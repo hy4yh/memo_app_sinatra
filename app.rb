@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require_relative './models/memo.rb'
 require 'byebug'
 
 get '/' do
@@ -21,6 +22,8 @@ post '/memos' do
     puts "空白文字のみのタイトルは禁止されています。"
   else
     #csvファイルへの保存処理
+    @memo = Memo.new(@memo_title, @memo_content)
+    @memo.save
   end
   redirect '/memos/:id'
 end
