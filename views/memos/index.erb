@@ -1,2 +1,4 @@
 <a href="memos/new">追加</a></br>
-<a href="xxx">メモA</a>
+<% memo_hash.each do |memo| %>
+  <%= "<a href=\"memos/#{memo[0]}\">#{memo[1]}</a><br>" %>
+<% end %>
