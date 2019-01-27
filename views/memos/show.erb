@@ -1,2 +1,4 @@
-<%= memo_hash[:title] %></br>
-<%= memo_hash[:content] %>
+<% require "cgi/escape" %>
+<%= CGI.escapeHTML(memo_hash[:title]) %></br>
+<%= CGI.escapeHTML(memo_hash[:content]).gsub(/\r\n|\r|\n/, "<br />") %></br>
+<%= "<a href=\"/memos/#{memo_hash[:uuid]}/edit\">変更</a>" %><a href="xxx">削除</a>

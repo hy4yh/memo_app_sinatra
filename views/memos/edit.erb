@@ -1,0 +1,5 @@
+<form action="<%= "/memos/#{memo_hash[:uuid]}" %>" method="post">
+  <textarea name="memo_contents" rows="10" cols="40"><%= memo_hash[:title] %><%= memo_hash[:content] %></textarea><br>
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="submit" value="変更">
+</form>

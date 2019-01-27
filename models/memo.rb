@@ -23,7 +23,24 @@ class Memo
   def self.find(uuid)
     CSV.foreach("memo.csv") do |row|
       if row[0] == uuid
-        return {title: row[1], content: row[2]}
+        return {uuid: row[0], title: row[1], content: row[2]}
+      end
+    end
+  end
+
+  def self.update(memo_hash)
+    array = []
+    CSV.foreach("memo.csv") do |row|
+      if row[0] == memo_hash[:uuid]
+        array << [row[0], memo_hash[:title].encode(universal_newline: true), memo_hash[:content].encode(universal_newline: true)]
+      else
+        array << [row[0], row[1], row[2]]
+      end
+    end
+
+    CSV.open('memo.csv', 'w') do |csv|
+      array.each do |row|
+        csv << row
       end
     end
   end
