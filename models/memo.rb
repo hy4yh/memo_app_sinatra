@@ -37,7 +37,19 @@ class Memo
         array << [row[0], row[1], row[2]]
       end
     end
+    write_csv(array)
+  end
 
+  def self.delete(uuid)
+    array = []
+    CSV.foreach("memo.csv") do |row|
+      array << [row[0], row[1], row[2]] unless row[0] == uuid
+    end
+    write_csv(array)
+  end
+
+  private
+  def self.write_csv(array)
     CSV.open('memo.csv', 'w') do |csv|
       array.each do |row|
         csv << row

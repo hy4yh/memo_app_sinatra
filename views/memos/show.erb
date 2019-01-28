@@ -1,4 +1,8 @@
-<% require "cgi/escape" %>
-<%= CGI.escapeHTML(memo_hash[:title]) %></br>
-<%= CGI.escapeHTML(memo_hash[:content]).gsub(/\r\n|\r|\n/, "<br />") %></br>
-<%= "<a href=\"/memos/#{memo_hash[:uuid]}/edit\">変更</a>" %><a href="xxx">削除</a>
+<%= escape_html(memo_hash[:title]) %></br>
+<%= n_to_br(escape_html(memo_hash[:content])) %></br>
+<%= "<a href=\"/memos/#{memo_hash[:uuid]}/edit\">変更</a>" %>
+<form action="<%= "/memos/#{memo_hash[:uuid]}" %>" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="削除">
+</form>
+<a href="/memos">戻る</a>

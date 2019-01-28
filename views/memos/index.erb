@@ -1,5 +1,4 @@
-<% require "cgi/escape" %>
 <a href="memos/new">追加</a></br>
 <% memo_hash.each do |memo| %>
-  <%= "<a href=\"memos/#{memo[0]}\">#{CGI.escapeHTML(memo[1])}</a><br>" %>
+  <%= "<a href=\"memos/#{memo[0]}\">#{escape_html(memo[1])}</a><br>" %>
 <% end %>
