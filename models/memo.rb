@@ -17,6 +17,7 @@ class Memo
   end
 
   def self.all
+    File.open('memo.csv', 'w') unless File.exist?("memo.csv")
     CSV.read("memo.csv")
   end
 
