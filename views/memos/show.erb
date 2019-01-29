@@ -1,6 +1,6 @@
 <div class="memo_content">
-<%= escape_html(memo_hash[:title]) %></br>
-<%= n_to_br(escape_html(memo_hash[:content])) %></br>
+  <%= escape_html(memo_hash[:title]) %></br>
+  <%= n_to_br(escape_html(memo_hash[:content])) %></br>
 </div>
 <form class="show_form" action="<%= "/memos/#{memo_hash[:uuid]}" %>" method="post">
   <%= "<a class=\"change_btn\" href=\"/memos/#{memo_hash[:uuid]}/edit\">変更</a>" %>
