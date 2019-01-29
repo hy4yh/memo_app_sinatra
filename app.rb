@@ -1,8 +1,10 @@
-require 'sinatra'
-require 'sinatra/reloader'
-require_relative './models/memo.rb'
-require 'cgi/escape'
-require 'byebug'
+# frozen_string_literal: true
+
+require "sinatra"
+require "sinatra/reloader"
+require_relative "./models/memo.rb"
+require "cgi/escape"
+require "byebug"
 
 helpers do
   def escape_html(str)
@@ -14,11 +16,11 @@ helpers do
   end
 end
 
-before '/*' do
+before "/*" do
   @error_msg = ""
 end
 
-['/memos/:uuid', "/memos/:uuid/edit"].each do |path|
+["/memos/:uuid", "/memos/:uuid/edit"].each do |path|
   before path do
     if request.env["REQUEST_METHOD"] == "GET"
       @memo_hash = Memo.find(params[:uuid])
@@ -26,7 +28,7 @@ end
   end
 end
 
-['/memos', "/memos/:uuid"].each do |path|
+["/memos", "/memos/:uuid"].each do |path|
   before path do
     request_method = request.env["REQUEST_METHOD"]
     if request_method == "PATCH" || request_method == "POST"
@@ -37,47 +39,47 @@ end
   end
 end
 
-get /\/(memos)?/ do
+get %r{/(memos)?} do
   memo_hash = Memo.all
-  erb :'memos/index', :locals => {:memo_hash => memo_hash}
+  erb :'memos/index', locals: { memo_hash: memo_hash }
 end
 
-get '/memos/new' do
+get "/memos/new" do
   erb :'memos/new'
 end
 
-post '/memos' do
-  if @memo_title.nil? || @memo_title.gsub(/^[[:space:]]+/, '').empty?
+post "/memos" do
+  if @memo_title.nil? || @memo_title.gsub(/^[[:space:]]+/, "").empty?
     @error_msg = "1行目はメモのタイトルです。必ず入力してください。"
     erb :'memos/new'
   else
-    #csvファイルへの保存処理
+    # csvファイルへの保存処理
     memo = Memo.new(@memo_title, @memo_content)
     memo.save
     redirect "/memos/#{memo.uuid}"
   end
 end
 
-get '/memos/:uuid' do
-  erb :'memos/show', :locals => {:memo_hash => @memo_hash}
+get "/memos/:uuid" do
+  erb :'memos/show', locals: { memo_hash: @memo_hash }
 end
 
-get '/memos/:uuid/edit' do
-  erb :'memos/edit', :locals => {:memo_hash => @memo_hash}
+get "/memos/:uuid/edit" do
+  erb :'memos/edit', locals: { memo_hash: @memo_hash }
 end
 
-patch '/memos/:uuid' do
-  memo_hash = {uuid: params[:uuid], title: @memo_title, content: @memo_content}
-  if memo_hash[:title].nil? || memo_hash[:title].gsub(/^[[:space:]]+/, '').empty?
+patch "/memos/:uuid" do
+  memo_hash = { uuid: params[:uuid], title: @memo_title, content: @memo_content }
+  if memo_hash[:title].nil? || memo_hash[:title].gsub(/^[[:space:]]+/, "").empty?
     @error_msg = "1行目はメモのタイトルです。必ず入力してください。"
-    erb :"memos/edit", :locals => {:memo_hash => memo_hash}
+    erb :"memos/edit", locals: { memo_hash: memo_hash }
   else
     Memo.update(memo_hash)
     redirect "/memos/#{params[:uuid]}"
   end
 end
 
-delete '/memos/:uuid' do
+delete "/memos/:uuid" do
   Memo.delete(params[:uuid])
   redirect "/memos"
 end

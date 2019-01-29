@@ -1,5 +1,7 @@
-require 'csv'
-require 'securerandom'
+# frozen_string_literal: true
+
+require "csv"
+require "securerandom"
 
 class Memo
   attr_accessor :uuid, :title, :content
@@ -11,21 +13,19 @@ class Memo
   end
 
   def save
-    CSV.open('memo.csv', 'a') do |memo|
+    CSV.open("memo.csv", "a") do |memo|
       memo << [@uuid, @title.encode(universal_newline: true), @content.encode(universal_newline: true)]
     end
   end
 
   def self.all
-    File.open('memo.csv', 'w') unless File.exist?("memo.csv")
+    File.open("memo.csv", "w") unless File.exist?("memo.csv")
     CSV.read("memo.csv")
   end
 
   def self.find(uuid)
     CSV.foreach("memo.csv") do |row|
-      if row[0] == uuid
-        return {uuid: row[0], title: row[1], content: row[2]}
-      end
+      return { uuid: row[0], title: row[1], content: row[2] } if row[0] == uuid
     end
   end
 
@@ -50,11 +50,12 @@ class Memo
   end
 
   private
-  def self.write_csv(array)
-    CSV.open('memo.csv', 'w') do |csv|
-      array.each do |row|
-        csv << row
+
+    def self.write_csv(array)
+      CSV.open("memo.csv", "w") do |csv|
+        array.each do |row|
+          csv << row
+        end
       end
     end
-  end
 end
