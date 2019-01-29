@@ -11,7 +11,7 @@ class Memo
   end
 
   def save
-    CSV.open('memo.csv','a') do |memo|
+    CSV.open('memo.csv', 'a') do |memo|
       memo << [@uuid, @title.encode(universal_newline: true), @content.encode(universal_newline: true)]
     end
   end

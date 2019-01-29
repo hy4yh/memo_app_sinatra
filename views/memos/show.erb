@@ -1,8 +1,10 @@
+<div class="memo_content">
 <%= escape_html(memo_hash[:title]) %></br>
 <%= n_to_br(escape_html(memo_hash[:content])) %></br>
-<%= "<a href=\"/memos/#{memo_hash[:uuid]}/edit\">変更</a>" %>
-<form action="<%= "/memos/#{memo_hash[:uuid]}" %>" method="post">
+</div>
+<form class="show_form" action="<%= "/memos/#{memo_hash[:uuid]}" %>" method="post">
+  <%= "<a class=\"change_btn\" href=\"/memos/#{memo_hash[:uuid]}/edit\">変更</a>" %>
   <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="削除">
+  <input class="delete_submit_btn" type="submit" value="削除">
+  <a class="top_btn show_form_top_btn" href="/memos">トップへ</a>
 </form>
-<a href="/memos">戻る</a>

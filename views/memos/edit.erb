@@ -1,6 +1,7 @@
-<form action="<%= "/memos/#{memo_hash[:uuid]}" %>" method="post">
+<form class="edit_form" action="<%= "/memos/#{memo_hash[:uuid]}" %>" method="post">
   <textarea name="memo_contents" rows="10" cols="40">
 <%= memo_hash[:title] %><%= memo_hash[:content] %></textarea><br>
   <input type="hidden" name="_method" value="PATCH">
-  <input type="submit" value="変更">
+  <input class="change_submit_btn" type="submit" value="変更">
+  <a class="back_btn edit_form_back_btn" href="<%= "/memos/#{memo_hash[:uuid]}" %>">戻る</a>
 </form>
