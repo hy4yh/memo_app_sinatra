@@ -2,8 +2,9 @@
 
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-gem 'sinatra'
-gem 'sinatra-contrib'
-gem 'byebug'
+gem "byebug"
+gem "rubocop", require: false
+gem "sinatra"
+gem "sinatra-contrib"
