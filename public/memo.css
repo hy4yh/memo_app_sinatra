@@ -13,28 +13,47 @@ body {
   margin-right: auto;
 }
 
-.error_msg {
+/* layout.erb */
+.error-msg {
   color: red;
 }
 
-.title {
+.header__title {
   font-size: 30px;
   margin-top: 20px;
 }
 
 /* index.erb */
-.memo_index {
+.main__memos {
   list-style-type: disc;
   margin: 20px;
 }
 
-.memo {
+.main__memo {
   margin: 10px;
 }
 
-/* ボタンとリンク */
-.add_btn, .back_btn, .top_btn, .save_submit_btn, .delete_submit_btn, .change_btn, .change_submit_btn {
-	position: relative;
+.main__add-btn {
+  position: relative;
+  display: inline-block;
+  width: 8%;
+  padding: 11px;
+  text-align: center;
+  text-decoration: none;
+  color: #FFF;
+  background: #26C6DA;
+  border-bottom: 2px solid #00838F;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+}
+
+/* new.erb */
+.new-form {
+  margin: 20px 0;
+}
+
+.new-form__back-btn, .new-form__save-btn {
+  position: relative;
 	display: inline-block;
   width: 8%;
 	padding: 11px;
@@ -47,13 +66,61 @@ body {
 	box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
 }
 
-.save_submit_btn, .delete_submit_btn, .change_submit_btn {
+.new-form__save-btn {
   width: 10%;
   height: 41px;
   padding-top: 7px;
   font-size: 16px;
 }
 
-.memo_content, .edit_form, .new_form {
+/* edit.erb */
+.edit-form {
   margin: 20px 0;
+}
+
+.edit-form__back-btn, .edit-form__change-btn {
+  position: relative;
+	display: inline-block;
+  width: 8%;
+	padding: 11px;
+	text-align: center;
+	text-decoration: none;
+	color: #FFF;
+	background: #26C6DA;
+	border-bottom: 2px solid #00838F;
+	border-radius: 4px;
+	box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+}
+
+.edit-form__change-btn {
+  width: 10%;
+  height: 41px;
+  padding-top: 7px;
+  font-size: 16px;
+}
+
+/* show.erb */
+.memo {
+  margin: 20px 0;
+}
+
+.show-form__change-btn, .show-form__delete-btn, .show-form__top-btn {
+  position: relative;
+  display: inline-block;
+  width: 8%;
+  padding: 11px;
+  text-align: center;
+  text-decoration: none;
+  color: #FFF;
+  background: #26C6DA;
+  border-bottom: 2px solid #00838F;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+}
+
+.show-form__delete-btn {
+  width: 10%;
+  height: 41px;
+  padding-top: 7px;
+  font-size: 16px;
 }

@@ -1,6 +1,8 @@
-<ul class="memo_index">
-<% memo_hash.each do |memo| %>
-  <li class="memo"><%= "<a href=\"memos/#{memo[0]}\">#{escape_html(memo[1])}</a><br>" %></li>
-<% end %>
-</ul>
-<a class="add_btn" href="memos/new">追加</a></br>
+<div class="main">
+  <ul class="main__memos">
+    <% memo_hash.each do |memo| %>
+    <li class="main__memo"><%= "<a href=\"memos/#{memo[0]}\">#{escape_html(memo[1])}</a><br>" %></li>
+    <% end %>
+  </ul>
+  <a class="main__add-btn" href="memos/new">追加</a></br>
+</div>

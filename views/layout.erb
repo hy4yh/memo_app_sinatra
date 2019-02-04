@@ -7,10 +7,10 @@
   </head>
 
   <body>
-    <header>
-      <h1 class="title">メモアプリ</h1>
+    <header class="header">
+      <h1 class="header__title">メモアプリ</h1>
     </header>
-    <div class="error_msg">
+    <div class="msg error-msg">
       <%= @error_msg unless @error_msg.empty? %>
     </div>
     <%= yield %>
